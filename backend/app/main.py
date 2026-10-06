@@ -1,5 +1,7 @@
 from fastapi import FastAPI
-from app.api.routes import health
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.api.routes import health, investigations
 from app.core.config import settings
 
 app = FastAPI(
@@ -8,7 +10,17 @@ app = FastAPI(
     description="Evidence-based pre-registration investigation agent API",
 )
 
+# Enable CORS for local development
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(health.router, prefix=settings.api_prefix, tags=["health"])
+app.include_router(investigations.router, prefix=settings.api_prefix, tags=["investigations"])
 
 
 @app.get("/")
