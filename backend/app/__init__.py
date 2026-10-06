@@ -1,0 +1,1 @@
+"""EventTrust Backend Application package."""
