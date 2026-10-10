@@ -44,3 +44,12 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Local backups - do not publish
+frontend-backup-before-redesign/
+*.bak
+*.before_matching_fix.py
+frontend/app/globals.css.backup
+
+# Local Python environment backup
+backend/.venv-broken-backup/

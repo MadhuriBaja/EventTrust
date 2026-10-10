@@ -11,14 +11,14 @@ app = FastAPI(
 )
 
 # Enable CORS for local development
+# Allow requests from the configured frontend origin
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[settings.frontend_origin],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 app.include_router(health.router, prefix=settings.api_prefix, tags=["health"])
 app.include_router(investigations.router, prefix=settings.api_prefix, tags=["investigations"])
 
